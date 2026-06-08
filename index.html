@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Star Content — Passe à 10K vues en 7 jours</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffd23f'%3E%3Cpath d='M12 2l2.95 6.36L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.05-.91L12 2z'/%3E%3C/svg%3E">
+<meta name="description" content="Coaching YouTube Star Content : atteins en 1 semaine les connaissances nécessaires pour faire des vidéos à 10K vues.">
+
+<!-- ============================================================= -->
+<!-- POLICES : display = Anton (titres punchy), body = Sora        -->
+<!-- ============================================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   VARIABLES — Modifie ici les couleurs globales du site
+   ================================================================ */
+:root{
+  --bg:        #060a14;   /* fond sombre studio */
+  --bg-2:      #0a1120;   /* fond sections alternées */
+  --bg-card:   #0e1626;   /* fond des cartes */
+  --cyan:      #38e1ff;   /* bleu clair / cyan principal */
+  --cyan-deep: #0bb8e6;   /* cyan plus profond */
+  --yellow:    #ffd23f;   /* jaune étoile */
+  --text:      #eaf2ff;   /* texte principal */
+  --text-dim:  #93a3bd;   /* texte secondaire */
+  --line:      rgba(56,225,255,.18); /* bordures fines */
+  --radius:    20px;
+  --maxw:      1180px;
+}
+
+/* ================================================================
+   RESET & BASE
+   ================================================================ */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Sora',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.display{font-family:'Anton',sans-serif;font-weight:400;line-height:.98;letter-spacing:.5px;text-transform:uppercase}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{position:relative}
+
+/* Fond global avec glow cyan + grain studio */
+body::before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(900px 600px at 80% -5%, rgba(56,225,255,.14), transparent 60%),
+    radial-gradient(700px 500px at 0% 30%, rgba(11,184,230,.10), transparent 55%),
+    var(--bg);
+}
+body::after{ /* grain léger */
+  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ================================================================
+   BOUTONS
+   ================================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;
+  padding:16px 30px;border-radius:60px;cursor:pointer;border:none;
+  background:linear-gradient(135deg,var(--cyan),var(--cyan-deep));
+  color:#021018;box-shadow:0 0 0 rgba(56,225,255,.5);
+  transition:transform .25s ease, box-shadow .35s ease;
+  position:relative;overflow:hidden;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(56,225,255,.45)}
+.btn--ghost{
+  background:transparent;color:var(--text);
+  border:1.5px solid var(--line);box-shadow:none;
+}
+.btn--ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn .star{color:var(--yellow)}
+
+/* ================================================================
+   ÉTOILE JAUNE réutilisable (SVG inline via classe)
+   ================================================================ */
+.star-ico{display:inline-block;color:var(--yellow);line-height:0}
+
+/* ================================================================
+   NAVBAR
+   ================================================================ */
+header.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 28px;backdrop-filter:blur(12px);
+  background:rgba(6,10,20,.55);border-bottom:1px solid transparent;
+  transition:border-color .3s, background .3s;
+}
+header.nav.scrolled{border-bottom-color:var(--line);background:rgba(6,10,20,.85)}
+.nav__logo{display:flex;align-items:center;gap:10px;font-family:'Anton';font-size:1.35rem;letter-spacing:1px}
+.nav__logo .star-ico{transform:translateY(-1px)}
+/* >>> REMPLACE le SVG ci-dessous par TON LOGO :
+   <img src="images/mon-logo.png" alt="Star Content" style="height:34px"> <<< */
+.nav__links{display:flex;gap:28px;align-items:center}
+.nav__links a{font-size:.92rem;color:var(--text-dim);font-weight:500;transition:color .2s}
+.nav__links a:hover{color:var(--cyan)}
+.nav__cta{padding:11px 22px;font-size:.9rem}
+.burger{display:none;background:none;border:none;color:var(--text);cursor:pointer}
+@media(max-width:860px){
+  .nav__links{display:none}
+  .burger{display:block}
+}
+
+/* ================================================================
+   HERO
+   ================================================================ */
+.hero{padding:150px 0 90px;text-align:center}
+.badge{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:.82rem;font-weight:600;letter-spacing:.5px;
+  padding:9px 18px;border-radius:60px;margin-bottom:28px;
+  background:rgba(255,210,63,.08);border:1px solid rgba(255,210,63,.35);
+  color:var(--yellow);
+}
+.badge .dot{width:8px;height:8px;border-radius:50%;background:var(--yellow);box-shadow:0 0 12px var(--yellow);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+.hero h1{
+  font-size:clamp(2.8rem,8vw,6.2rem);
+  background:linear-gradient(180deg,#fff 30%,var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 8px 40px rgba(56,225,255,.25));
+}
+.hero h1 .hl{
+  -webkit-text-fill-color:var(--yellow);color:var(--yellow);
+  background:none;display:inline-block;
+}
+.hero .sub{
+  max-width:620px;margin:24px auto 0;color:var(--text-dim);
+  font-size:clamp(1rem,2.2vw,1.2rem);
+}
+.hero .price-row{
+  display:flex;align-items:center;justify-content:center;gap:18px;
+  margin:34px 0 12px;flex-wrap:wrap;
+}
+.price-tag{font-family:'Anton';font-size:2.4rem;color:var(--cyan)}
+.price-tag small{font-family:'Sora';font-size:.95rem;color:var(--text-dim);font-weight:500;display:block;text-transform:none}
+.hero .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+
+/* Stats clés du hero */
+.hero-stats{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  max-width:880px;margin:56px auto 0;
+}
+.stat{
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:22px 16px;text-align:center;
+  transition:transform .3s,border-color .3s;
+}
+.stat:hover{transform:translateY(-6px);border-color:var(--cyan)}
+.stat .num{font-family:'Anton';font-size:1.9rem;color:var(--cyan);display:block}
+.stat .lbl{font-size:.82rem;color:var(--text-dim);margin-top:4px}
+@media(max-width:680px){.hero-stats{grid-template-columns:repeat(2,1fr)}}
+
+/* Bandeau marquee */
+.marquee{
+  margin-top:70px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:18px 0;overflow:hidden;white-space:nowrap;background:rgba(56,225,255,.03);
+}
+.marquee__track{display:inline-block;animation:scrollx 26s linear infinite}
+.marquee span{font-family:'Anton';font-size:1.5rem;color:var(--text-dim);margin:0 22px;letter-spacing:1px}
+.marquee span .star-ico{color:var(--yellow);margin-left:22px}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ================================================================
+   TITRES DE SECTION
+   ================================================================ */
+.sec{padding:100px 0}
+.sec--alt{background:var(--bg-2)}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 56px}
+.sec-head .eyebrow{
+  display:inline-flex;align-items:center;gap:8px;color:var(--cyan);
+  font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;
+}
+.sec-head h2{font-size:clamp(2rem,5vw,3.4rem);color:var(--text)}
+.sec-head h2 .hl{color:var(--cyan)}
+.sec-head p{color:var(--text-dim);margin-top:16px;font-size:1.05rem}
+
+/* ================================================================
+   PREUVE SOCIALE (social proof)
+   ================================================================ */
+.proof{padding:64px 0}
+.proof .eyebrow{
+  display:flex;align-items:center;justify-content:center;gap:8px;color:var(--cyan);
+  font-size:.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:34px;
+}
+.proof-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
+}
+/* Tablette : 2 colonnes si la largeur devient trop juste pour 3 */
+@media(max-width:880px){
+  .proof-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+/* Mobile : 1 colonne empilée */
+@media(max-width:560px){
+  .proof-grid{grid-template-columns:1fr;}
+}
+.proof-card{
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:34px 24px;text-align:center;
+  position:relative;overflow:hidden;min-width:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .3s,border-color .3s,box-shadow .35s;
+}
+.proof-card::before{
+  content:"";position:absolute;inset:0;z-index:0;opacity:.5;
+  background:radial-gradient(420px 180px at 50% -40%, rgba(56,225,255,.12), transparent 70%);
+}
+.proof-card>*{position:relative;z-index:1}
+.proof-card:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 20px 50px rgba(56,225,255,.12)}
+.proof-card .pnum{
+  font-family:'Anton';font-size:clamp(2.2rem,5.2vw,3.6rem);line-height:1;
+  white-space:nowrap;max-width:100%;
+  background:linear-gradient(180deg,#fff 25%,var(--cyan));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 6px 26px rgba(56,225,255,.22));
+}
+@media(max-width:560px){
+  .proof-card{padding:28px 20px}
+  .proof-card .pnum{font-size:clamp(2rem,9vw,2.6rem)}
+}
+.proof-card .plbl{color:var(--text-dim);font-size:.95rem;font-weight:500;margin-top:10px}
+/* Bandeau des paliers de vues atteints */
+.proof-tiers{
+  margin-top:18px;background:var(--bg-card);border:1px solid var(--line);
+  border-radius:var(--radius);padding:26px 24px;text-align:center;
+  transition:transform .3s,border-color .3s,box-shadow .35s;
+}
+.proof-tiers:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 20px 50px rgba(56,225,255,.12)}
+.proof-tiers .ptitle{
+  color:var(--cyan);font-size:.8rem;font-weight:700;letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:16px;
+}
+.proof-tiers__row{
+  display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:8px 4px;
+}
+.proof-tiers .tier{font-family:'Anton';font-size:clamp(1.4rem,4.5vw,2.2rem);color:var(--text)}
+.proof-tiers .tier:last-child{color:var(--yellow)}
+.proof-tiers .sep{color:var(--cyan);font-size:1rem;margin:0 10px;opacity:.7}
+.proof-tiers .tsub{color:var(--text-dim);font-size:.92rem;margin-top:12px}
+
+/* ================================================================
+   OFFRE
+   ================================================================ */
+.offer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:34px;align-items:start}
+@media(max-width:900px){.offer-grid{grid-template-columns:1fr}}
+
+.offer-list{display:flex;flex-direction:column;gap:14px}
+.offer-item{
+  display:flex;gap:16px;align-items:flex-start;
+  background:var(--bg-card);border:1px solid var(--line);
+  border-radius:16px;padding:20px 22px;
+  transition:transform .25s,border-color .25s,background .25s;
+}
+.offer-item:hover{transform:translateX(6px);border-color:var(--cyan);background:#101a2c}
+.offer-item .chk{
+  flex:none;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(56,225,255,.12);color:var(--cyan);
+}
+.offer-item h4{font-family:'Sora';font-weight:700;font-size:1.02rem;margin-bottom:3px;text-transform:none;letter-spacing:0}
+.offer-item p{color:var(--text-dim);font-size:.92rem}
+
+/* Carte prix sticky */
+.price-card{
+  position:sticky;top:100px;
+  background:linear-gradient(170deg,#0f1a2e,#0a1322);
+  border:1px solid var(--line);border-radius:24px;padding:36px 32px;
+  box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden;
+}
+.price-card::before{
+  content:"";position:absolute;top:-60px;right:-60px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(56,225,255,.25),transparent 70%);
+}
+.price-card .ribbon{
+  display:inline-flex;gap:8px;align-items:center;font-size:.8rem;font-weight:700;
+  color:var(--yellow);background:rgba(255,210,63,.1);border:1px solid rgba(255,210,63,.3);
+  padding:7px 14px;border-radius:50px;margin-bottom:18px;
+}
+.price-card .big{font-family:'Anton';font-size:4rem;color:#fff;line-height:1}
+.price-card .big small{font-size:1.1rem;color:var(--text-dim);font-family:'Sora';font-weight:500}
+.price-card .promise{
+  margin:20px 0 26px;padding:18px;border-radius:14px;
+  background:rgba(56,225,255,.06);border:1px dashed var(--line);
+  color:var(--text);font-size:.98rem;
+}
+.price-card .promise b{color:var(--cyan)}
+.price-card .btn{width:100%;justify-content:center;margin-bottom:14px}
+.price-card .reassure{display:flex;flex-direction:column;gap:8px;font-size:.85rem;color:var(--text-dim)}
+.price-card .reassure span{display:flex;align-items:center;gap:8px}
+
+/* ================================================================
+   TÉMOIGNAGES — CARROUSEL
+   ================================================================ */
+.carousel{position:relative}
+.track{
+  display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:8px 4px 26px;scroll-behavior:smooth;
+  -ms-overflow-style:none;scrollbar-width:none;
+}
+.track::-webkit-scrollbar{display:none}
+
+.tcard{
+  flex:0 0 360px;max-width:360px;scroll-snap-align:start;
+  background:var(--bg-card);border:1px solid var(--line);border-radius:22px;
+  padding:24px;display:flex;flex-direction:column;gap:16px;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+}
+.tcard:hover{transform:translateY(-8px);border-color:var(--cyan);box-shadow:0 20px 50px rgba(56,225,255,.12)}
+@media(max-width:520px){.tcard{flex:0 0 84vw;max-width:84vw}}
+
+.tcard__head{display:flex;align-items:center;gap:14px}
+/* >>> PHOTO DE PROFIL : remplace le src de l'<img> dans chaque carte <<< */
+.tcard__avatar{
+  width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;
+  border:2px solid var(--cyan);background:#13243b;
+}
+.tcard__id{flex:1;min-width:0}
+.tcard__name{font-weight:700;font-size:1rem;display:flex;align-items:center;gap:6px}
+.tcard__name a{color:var(--text);border-bottom:1px dashed var(--cyan);transition:color .2s}
+.tcard__name a:hover{color:var(--cyan)}
+.tcard__date{font-size:.78rem;color:var(--text-dim)}
+.tcard__stars{color:var(--yellow);font-size:.95rem;letter-spacing:2px}
+
+.tcard__result{
+  display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  font-size:.82rem;font-weight:700;color:var(--cyan);
+  background:rgba(56,225,255,.1);border:1px solid var(--line);
+  padding:6px 13px;border-radius:50px;
+}
+
+.tcard__text{color:var(--text-dim);font-size:.94rem;flex:1}
+
+/* Média (capture image) */
+.tcard__media img{border-radius:14px;border:1px solid var(--line);width:100%}
+
+/* Média vidéo / audio */
+.media-box{
+  position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+  background:#000;cursor:pointer;
+}
+.media-box video{width:100%;display:block;border-radius:14px}
+.media-box .hint{
+  position:absolute;inset:0;display:grid;place-items:center;
+  background:linear-gradient(0deg,rgba(0,0,0,.45),transparent 55%);
+  pointer-events:none;transition:opacity .3s;
+}
+.media-box .hint .play{
+  width:58px;height:58px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(56,225,255,.9);color:#021018;box-shadow:0 0 30px rgba(56,225,255,.6);
+}
+.media-box .hint .lbl{position:absolute;bottom:12px;left:14px;font-size:.78rem;color:#fff;font-weight:600}
+.media-box.playing .hint{opacity:0}
+
+/* Carte vocal : visuel onde audio */
+.audio-card{
+  display:flex;flex-direction:column;gap:14px;
+  background:linear-gradient(160deg,#10243a,#0a1626);
+  border-radius:14px;border:1px solid var(--line);padding:20px;cursor:pointer;
+  position:relative;
+}
+.audio-card .wave{display:flex;align-items:flex-end;gap:3px;height:46px}
+.audio-card .wave i{
+  flex:1;background:var(--cyan);border-radius:3px;opacity:.55;
+  animation:eq 1.2s ease-in-out infinite;height:30%;
+}
+.audio-card.playing .wave i{opacity:1}
+.audio-card.playing .wave i:nth-child(odd){animation-duration:.9s}
+@keyframes eq{0%,100%{height:20%}50%{height:95%}}
+.audio-card .ctrl{display:flex;align-items:center;gap:12px}
+.audio-card .ctrl .play{
+  width:46px;height:46px;border-radius:50%;flex:none;display:grid;place-items:center;
+  background:var(--cyan);color:#021018;
+}
+.audio-card .ctrl .meta{font-size:.85rem;color:var(--text-dim)}
+
+/* Flèches carrousel */
+.carousel__nav{display:flex;gap:12px;justify-content:flex-end;margin-bottom:18px}
+.carousel__nav button{
+  width:46px;height:46px;border-radius:50%;border:1px solid var(--line);
+  background:var(--bg-card);color:var(--text);cursor:pointer;display:grid;place-items:center;
+  transition:background .25s,border-color .25s,color .25s;
+}
+.carousel__nav button:hover{background:var(--cyan);color:#021018;border-color:var(--cyan)}
+
+/* ================================================================
+   À PROPOS
+   ================================================================ */
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:center}
+@media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:30px}}
+.about-photo{
+  position:relative;border-radius:24px;overflow:hidden;border:1px solid var(--line);
+  background:#0d1726;aspect-ratio:4/5;
+}
+/* >>> PHOTO "À PROPOS" : remplace le src de cette image <<< */
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(6,10,20,.55),transparent 50%);
+}
+.about-photo .float-star{
+  position:absolute;top:18px;right:18px;color:var(--yellow);
+  filter:drop-shadow(0 0 14px rgba(255,210,63,.6));animation:spin 14s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.about-txt h2{font-size:clamp(2rem,5vw,3.2rem)}
+.about-txt h2 .hl{color:var(--cyan)}
+.about-txt p{color:var(--text-dim);margin-top:18px;font-size:1.02rem}
+.tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.tag{
+  font-size:.85rem;font-weight:600;padding:9px 16px;border-radius:50px;
+  background:rgba(56,225,255,.07);border:1px solid var(--line);color:var(--text);
+  transition:transform .2s,border-color .2s,color .2s;
+}
+.tag:hover{transform:translateY(-3px);border-color:var(--cyan);color:var(--cyan)}
+
+/* ================================================================
+   FORMULAIRE
+   ================================================================ */
+.form-wrap{max-width:760px;margin:0 auto}
+.form-card{
+  background:linear-gradient(170deg,#0f1a2e,#0a1322);
+  border:1px solid var(--line);border-radius:26px;padding:42px 38px;
+  box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;overflow:hidden;
+}
+.form-card::before{
+  content:"";position:absolute;top:-80px;left:-40px;width:240px;height:240px;
+  background:radial-gradient(circle,rgba(255,210,63,.12),transparent 70%);
+}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;position:relative}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:7px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.85rem;font-weight:600;color:var(--text)}
+.field label .req{color:var(--cyan)}
+.field input,.field textarea{
+  font-family:'Sora';font-size:.95rem;color:var(--text);
+  background:#0a1322;border:1px solid var(--line);border-radius:12px;
+  padding:13px 15px;transition:border-color .2s,box-shadow .2s;resize:vertical;
+}
+.field input::placeholder,.field textarea::placeholder{color:#5d6f8c}
+.field input:focus,.field textarea:focus{
+  outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(56,225,255,.15);
+}
+.form-card .btn{width:100%;justify-content:center;margin-top:22px;font-size:1.05rem}
+.form-note{text-align:center;color:var(--text-dim);font-size:.85rem;margin-top:14px}
+.form-success{
+  display:none;text-align:center;padding:30px;
+  background:rgba(56,225,255,.08);border:1px solid var(--cyan);border-radius:16px;
+  color:var(--text);margin-top:20px;
+}
+.form-success.show{display:block;animation:fadein .4s ease}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+footer{padding:60px 0 40px;border-top:1px solid var(--line);text-align:center}
+footer .flogo{font-family:'Anton';font-size:1.6rem;letter-spacing:1px;display:inline-flex;align-items:center;gap:10px}
+footer .fsub{color:var(--text-dim);font-size:.9rem;margin-top:10px}
+footer .fsocials{display:flex;gap:18px;justify-content:center;margin:22px 0}
+footer .fsocials a{color:var(--text-dim);transition:color .2s}
+footer .fsocials a:hover{color:var(--cyan)}
+footer .fcopy{color:#52617c;font-size:.8rem;margin-top:20px}
+
+/* ================================================================
+   ANIMATIONS D'APPARITION AU SCROLL
+   ================================================================ */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@keyframes fadein{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- ============================================================= -->
+<!-- NAVBAR                                                        -->
+<!-- ============================================================= -->
+<header class="nav" id="nav">
+  <!-- >>> LOGO : remplace le bloc ci-dessous par <img src="images/ton-logo.png" alt="Star Content" style="height:34px"> <<< -->
+  <a href="#hero" class="nav__logo">
+    <span class="star-ico" aria-hidden="true">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01z"/></svg>
+    </span>
+    STAR CONTENT
+  </a>
+  <nav class="nav__links">
+    <a href="#offre">L'offre</a>
+    <a href="#temoignages">Témoignages</a>
+    <a href="#apropos">À propos</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="#contact" class="btn nav__cta">Réserver - 97€</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</header>
+
+<!-- ============================================================= -->
+<!-- HERO                                                          -->
+<!-- ============================================================= -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="badge reveal">
+      <span class="dot"></span> PLACES LIMITÉES - Sélection en cours
+    </div>
+
+    <h1 class="reveal">
+      PASSE À <span class="hl">+10K VUES</span><br>EN 7 JOURS
+    </h1>
+
+    <p class="sub reveal">
+      Que tu partes de zéro ou que ta chaîne YouTube stagne,
+      apprends en 1 semaine les bases qui permettent de faire des vidéos à 10K vues et plus.
+    </p>
+
+    <div class="price-row reveal">
+      <div class="price-tag">97€ <small>paiement unique</small></div>
+      <span class="star-ico">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01z"/></svg>
+      </span>
+    </div>
+
+    <div class="cta-row reveal">
+      <a href="#contact" class="btn">Je réserve ma place <span class="star">★</span></a>
+      <a href="#offre" class="btn btn--ghost">Voir ce qui est inclus</a>
+    </div>
+
+    <!-- STATS CLÉS -->
+    <div class="hero-stats">
+      <div class="stat reveal"><span class="num">2h</span><span class="lbl">de call personnalisé</span></div>
+      <div class="stat reveal"><span class="num">7j</span><span class="lbl">de feedback illimité</span></div>
+      <div class="stat reveal"><span class="num">5 étapes</span><span class="lbl">plan d'action réaliste</span></div>
+      <div class="stat reveal"><span class="num">+26,5 Go</span><span class="lbl">pack d'assets inclus</span></div>
+    </div>
+  </div>
+
+  <!-- BANDEAU DÉFILANT -->
+  <div class="marquee">
+    <div class="marquee__track" id="marquee">
+      <span>TITRES<span class="star-ico">★</span> MINIATURES <span class="star-ico">★</span> STORYTELLING <span class="star-ico">★</span> VOIX <span class="star-ico">★</span> MONTAGE <span class="star-ico">★</span> WATCH TIME <span class="star-ico">★</span> </span>
+      <span>TITRES<span class="star-ico">★</span> MINIATURES <span class="star-ico">★</span> STORYTELLING <span class="star-ico">★</span> VOIX <span class="star-ico">★</span> MONTAGE <span class="star-ico">★</span> WATCH TIME <span class="star-ico">★</span> </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- PREUVE SOCIALE (social proof)                                 -->
+<!-- ============================================================= -->
+<section class="proof" id="preuve">
+  <div class="wrap">
+    <span class="eyebrow reveal"><span class="star-ico">★</span> DES RÉSULTATS QUI PARLENT</span>
+    <div class="proof-grid">
+      <div class="proof-card reveal"><span class="pnum">3,7M+</span><span class="plbl">Vues cumulées</span></div>
+      <div class="proof-card reveal"><span class="pnum">+50&nbsp;000</span><span class="plbl">Abonnés générés</span></div>
+      <div class="proof-card reveal"><span class="pnum">10+</span><span class="plbl">Créateurs accompagnés</span></div>
+    </div>
+    <div class="proof-tiers reveal">
+      <div class="ptitle">Vues atteintes par des vidéos coachées</div>
+      <div class="proof-tiers__row">
+        <span class="tier">10K</span><span class="sep">•</span>
+        <span class="tier">50K</span><span class="sep">•</span>
+        <span class="tier">100K</span><span class="sep">•</span>
+        <span class="tier">1M+</span>
+      </div>
+      <div class="tsub">Les bases, voire plus...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- OFFRE                                                         -->
+<!-- ============================================================= -->
+<section class="sec sec--alt" id="offre">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="star-ico">★</span> CE QUE COMPREND L'OFFRE</span>
+      <h2>Tout pour passer au <span class="hl">niveau supérieur</span></h2>
+      <p>Un accompagnement complet et intensif sur 7 jours, conçu pour débloquer ta chaîne et installer les bons réflexes.</p>
+    </div>
+
+    <div class="offer-grid">
+      <!-- LISTE DES INCLUS -->
+      <div class="offer-list">
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>2h de call personnalisé avec moi</h4><p>Un échange en one to one pour analyser ta chaîne et établir notre plan.</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Analyse complète de la chaîne</h4><p>Titres, miniatures, voix, storytelling, montage, sujets etc… Tout va y passer.</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Feedback illimité pendant 7 jours</h4><p>Sur tes vidéos : miniatures, scripts, voix, montage, sujets, etc. Tu me poses toutes les questions qui te passent par la tête, j'y répondrai.</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Un plan d'action clair en 5 étapes</h4><p>5 actions concrètes à appliquer directement après le call.</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Mon pack d'assets YouTube</h4><p>Plus de 3 ans de travail en 1 pack de 26 Go : templates, b-rolls, outils de montage...</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Un salon Discord privé</h4><p>Pour poser toutes tes questions à tout moment pendant l'accompagnement et discuter avec les autres créateurs.</p></div>
+        </div>
+        <div class="offer-item reveal">
+          <span class="chk">✓</span>
+          <div><h4>Réponses 7j/7 toute la semaine</h4><p>Je reste disponible pendant toute la durée du coaching.</p></div>
+        </div>
+      </div>
+
+      <!-- CARTE PRIX -->
+      <div class="price-card reveal">
+        <span class="ribbon"><span class="star-ico">★</span> PLACES LIMITÉES</span>
+        <div class="big">97€<small> / paiement unique</small></div>
+        <div class="promise">
+          « Atteins en <b>1 semaine</b> les connaissances nécessaires pour faire des vidéos à <b>10K vues</b>. »
+        </div>
+        <a href="#contact" class="btn">Réserver mon coaching <span class="star">★</span></a>
+        <div class="reassure">
+          <span><span class="star-ico">★</span> Accompagnement 100% personnalisé</span>
+          <span><span class="star-ico">★</span> Pour créateurs sous les 10K vues</span>
+          <span><span class="star-ico">★</span> Résultats concrets dès la 1ère semaine</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- TÉMOIGNAGES (CARROUSEL)                                       -->
+<!-- ============================================================= -->
+<section class="sec" id="temoignages">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="star-ico">★</span> ILS ONT EXPLOSÉ LEURS VUES</span>
+      <h2>Ce que disent les <span class="hl">créateurs</span></h2>
+      <p>Des résultats réels, après une seule semaine de coaching Star Content.</p>
+    </div>
+
+    <div class="carousel">
+      <div class="carousel__nav">
+        <button id="prevBtn" aria-label="Précédent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button id="nextBtn" aria-label="Suivant">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+
+      <div class="track" id="track">
+
+        <!-- ===================================================== -->
+        <!-- CARTE TÉMOIGNAGE TEXTE (modèle à dupliquer)            -->
+        <!-- Remplace : avatar (src), nom, date, résultat, texte    -->
+        <!-- ===================================================== -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <!-- >>> PHOTO DE PROFIL <<< -->
+            <img class="tcard__avatar" src="images/pp-whoslucas.jpg" alt="Profil">
+            <div class="tcard__id">
+                <!-- >>> LIEN CHAÎNE YOUTUBE de Top Lego <<< -->
+              <div class="tcard__name"><a href="https://www.youtube.com/@whoslucas7" target="_blank" rel="noopener">Who's Lucas ? ↗</a></div>
+              <div class="tcard__date">Novembre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> 1er short à +1M vues</span>
+          <p class="tcard__text">« Merci énormément à Dynasty, j'ai appris des trucs de fou, il est hyper sympa et ses remarques sont toujours pertinentes, je recommande de bz surtout pour le prix foncez 🔥 »</p>
+           <div class="tcard__media">
+            <img src="images/témoignange-whoslucas.png" alt="Capture témoignage">
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- CARTE TÉMOIGNAGE TEXTE — Akuro                        -->
+        <!-- >>> Remplace l'image src par TA capture d'écran <<<    -->
+        <!-- ===================================================== -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <img class="tcard__avatar" src="images/pp-akuro.jpg" alt="Akuro">
+            <div class="tcard__id">
+              <!-- >>> LIEN CHAÎNE YOUTUBE de Lil Ju <<< -->
+              <div class="tcard__name"><a href="https://www.youtube.com/@akuroytb" target="_blank" rel="noopener">Akuro ↗</a></div>
+              <div class="tcard__date">Avril 2026</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> Vidéo à +60K après le coaching</span>
+          <p class="tcard__text">« Les résultats n'ont pas été là directement... Mais à force, le travail paie toujours. J'ai posté ma première vidéo, et elle est déjà à 60K vues. Donc les gars... foncez ! »</p>
+           <div class="tcard__media">
+            <!-- >>> Remplace par TA capture d'écran (image) <<< -->
+            <img src="images/stats-lilju.png" alt="Capture témoignage Akuro">
+          </div>
+        </article>
+
+        <!-- ===================================================== -->
+        <!-- CARTE TÉMOIGNAGE TEXTE — Top Lego                     -->
+        <!-- >>> Remplace l'image src par TA capture d'écran <<<    -->
+        <!-- ===================================================== -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <img class="tcard__avatar" src="images/pp-toplego.jpg" alt="Top Lego">
+            <div class="tcard__id">
+              <!-- >>> LIEN CHAÎNE YOUTUBE de Top Lego <<< -->
+              <div class="tcard__name"><a href="https://www.youtube.com/@TopLEGOfr" target="_blank" rel="noopener">Top Lego ↗</a></div>
+              <div class="tcard__date">Septembre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> Vidéo à +95K après le coaching</span>
+          <p class="tcard__text">« Ça a été l'une des semaines où j'ai appris le plus de choses sur YouTube. J'ai enfin compris mes erreurs, donc j'ai fait plus de vues. Le coaching est excellent, merci encore à Dynasty. La promesse c'est clairement pas du bullshit. »</p>
+           <div class="tcard__media">
+            <!-- >>> Remplace par TA capture d'écran (image) <<< -->
+            <img src="images/stats-toplego.png" alt="Capture témoignage Top Lego">
+          </div>
+        </article>
+
+        <!-- CARTE TÉMOIGNAGE TEXTE -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <!-- >>> PHOTO DE PROFIL <<< -->
+            <img class="tcard__avatar" src="images/pp-teyzo.jpg" alt="Profil">
+            <div class="tcard__id">
+              <!-- >>> LIEN CHAÎNE YOUTUBE de Teyzo <<< -->
+              <div class="tcard__name"><a href="https://www.youtube.com/@teyzolpb" target="_blank" rel="noopener">Teyzo ↗</a></div>
+              <div class="tcard__date">Octobre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> De 1,5K à +22K vues / vidéo</span>
+          <p class="tcard__text">« Que vous soyez débutant/intermédiaire ou même avancé sur youtube franchement ça vaut vraiment le coup, perso j'ai essayé et durant ces 7 jours j'ai beaucoup appris grâce au frérot Dynasty. Je recommande »</p>
+        </article>
+
+          <!-- Carte texte supplémentaire -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <img class="tcard__avatar" src="images/pp-kenzovdr.jpg" alt="Profil">
+            <div class="tcard__id">
+              <div class="tcard__name">Kenzo VDR</div>
+              <div class="tcard__date">Décembre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> x3 sur le watch time</span>
+          <p class="tcard__text">« Vraiment les gars. Si vous voulez progresser vous trouverez pas mieux. Accrochez-vous il est très perfectionniste mais c'est ça qui va vous faire progresser. Je recommande les yeux fermés. Merci pour tout »</p>
+        </article>
+
+        <!-- CARTE TÉMOIGNAGE TEXTE -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <!-- >>> PHOTO DE PROFIL <<< -->
+            <img class="tcard__avatar" src="images/pp-felixintsu.jpg" alt="Profil">
+            <div class="tcard__id">
+              <div class="tcard__name">Félix</div>
+              <div class="tcard__date">Octobre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> 1ère vidéo à +12K vues</span>
+          <p class="tcard__text">« Si vous avez besoin d'un regard extérieur et de conseils de pro : foncez !! Dynasty prend le temps et il dit les termes. Merci pour le coaching bg 🫶
+»</p>
+        </article>
+
+        <!-- CARTE TÉMOIGNAGE TEXTE -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <!-- >>> PHOTO DE PROFIL <<< -->
+            <img class="tcard__avatar" src="images/pp-kizame.jpg" alt="Profil">
+            <div class="tcard__id">
+              <div class="tcard__name">HACKEYE</div>
+              <div class="tcard__date">Mai 2026</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> +78% de vues en 1 semaine</span>
+          <p class="tcard__text">« Franchement les gars, ce coaching m'a vraiment aidé à m'améliorer globalement dans la création de contenu (script, montage, voix, ...). Dynasty a analysé toute ma chaîne et m'a aidé sur les points qui n'allaient pas.
+                                  Je recommande ça vaut vraiment le coup. »</p>
+        </article>
+
+         <!-- CARTE TÉMOIGNAGE CAPTURE (image Discord / DM) -->
+        <article class="tcard">
+          <div class="tcard__head">
+            <img class="tcard__avatar" src="images/pp-lucase.jpg" alt="Profil">
+            <div class="tcard__id">
+              <div class="tcard__name">Lucas E</div>
+              <div class="tcard__date">Décembre 2025</div>
+            </div>
+            <div class="tcard__stars">★★★★★</div>
+          </div>
+          <span class="tcard__result"><span class="star-ico">★</span> 1ère vidéo à 5K vues</span>
+          <!-- >>> CAPTURE DISCORD/DM : remplace le src de l'image <<< -->
+          <div class="tcard__media">
+        </div>
+         <p class="tcard__text">« Coaching très enrichissant ! Vous allez progresser à coup sûr 😉 »</p>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- À PROPOS                                                      -->
+<!-- ============================================================= -->
+<section class="sec sec--alt" id="apropos">
+  <div class="wrap">
+    <div class="about-grid">
+      <!-- >>> PHOTO À PROPOS : remplace le src ci-dessous <<< -->
+      <div class="about-photo reveal">
+        <img src="images/photo-dynasty.png" alt="Photo coach Star Content">
+        <span class="float-star" aria-hidden="true">
+          <svg width="42" height="42" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01z"/></svg>
+        </span>
+      </div>
+
+      <div class="about-txt reveal">
+        <span class="eyebrow" style="color:var(--cyan);font-weight:700;letter-spacing:2px;font-size:.85rem">À PROPOS DE MOI</span>
+        <h2>Créateur YouTube, <span class="hl">spécialiste musique & storytelling</span></h2>
+        <!-- >>> Personnalise ce texte avec ton parcours <<< -->
+        <p>
+          En 2025, ma chaîne YouTube a accumulé plus de 30 000 abonnés et 3,1 millions de vues, 
+          dont une vidéo à plus de 900 000 vues. À seulement 17 ans, en étant encore au lycée, j'ai pu vivre 
+          de YouTube et arrêter l'école. Tout ça grâce à mon PC, et mon envie de raconter des histoires.
+        </p>
+        <p>
+          Pourtant, un an avant j'étais exactement comme beaucoup de créateurs aujourd'hui :
+          je publiais des vidéos sans vraiment comprendre pourquoi certaines fonctionnaient et d'autres non.
+          Sauf que sur YouTube, le hasard n'existe pas. Alors j'ai créé ce coaching pour transmettre 
+          en une semaine tout ce que j'aurais aimé apprendre un peu plus tôt.
+           </p>
+        <p>
+          Mon objectif est simple : te faire gagner des mois d'essais en t'évitant les erreurs classiques que j'ai 
+          aussi faites au début, et t'aider à apprendre les bases qui permettent de créer des vidéos capables 
+          d'atteindre les 10 000 vues (et si t'es bon, même peut-être beaucoup plus que ça...).
+        </p>
+        <div class="tags">
+          <span class="tag">Storytelling</span>
+          <span class="tag">Miniatures</span>
+          <span class="tag">Titres</span>
+          <span class="tag">Montage</span>
+          <span class="tag">Voix</span>
+          <span class="tag">Sujets</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- FORMULAIRE DE CONTACT / RÉSERVATION                           -->
+<!-- ============================================================= -->
+<section class="sec" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><span class="star-ico">★</span> RÉSERVE TA PLACE</span>
+      <h2>Prêt à passer à <span class="hl">10K vues</span> ?</h2>
+      <p>Remplis le formulaire ci-dessous. Je reviens vers toi rapidement en MP Discord pour démarrer le coaching.</p>
+    </div>
+
+    <div class="form-wrap reveal">
+      <div class="form-card">
+        <!-- >>> Branche ce formulaire à ton outil (Formspree, Tally, ton email, etc.)
+                 via l'attribut action ou le JS plus bas <<< -->
+        <form id="bookForm" novalidate>
+          <div class="form-grid">
+            <div class="field">
+              <label>Discord <span class="req">*</span></label>
+              <input type="text" name="Discord" placeholder="Ton pseudo Discord" required>
+            </div>
+            <div class="field">
+              <label>Lien de ta chaîne YouTube <span class="req">*</span></label>
+              <input type="url" name="youtube" placeholder="https://youtube.com/@tachaine" required>
+            </div>
+            <div class="field full">
+              <label>Ta situation actuelle</label>
+              <textarea name="situation" rows="2" placeholder="Nombre d'abonnés, vues moyennes, principal blocage"></textarea>
+            </div>
+            <div class="field full">
+              <label>Ton objectif</label>
+              <textarea name="objectif" rows="2" placeholder="Ton objectif principal sur YouTube"></textarea>
+            </div>
+          </div>
+          <button type="submit" class="btn">Réserver mon coaching - 97€ <span class="star">★</span></button>
+          <p class="form-note">Places limitées · Réponse sous 24h · Paiement unique</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <strong>Merci !</strong> Ta demande est bien envoyée. Je reviens vers toi très vite pour lancer ta semaine Star Content. <span class="star-ico">★</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= -->
+<!-- FOOTER                                                        -->
+<!-- ============================================================= -->
+<footer>
+  <div class="wrap">
+    <div class="flogo">
+      <span class="star-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 7.1-1.01z"/></svg></span>
+      STAR CONTENT
+    </div>
+    <p class="fsub">Passe à +10K vues en 7 jours.</p>
+    <div class="fsocials">
+      <!-- >>> Remplace par tes liens réseaux <<< -->
+      <a href="https://www.youtube.com/@dynastyrap" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.5-.4-5.2a3 3 0 0 0-2.1-2.1C18.7 4.3 12 4.3 12 4.3s-6.7 0-8.5.4A3 3 0 0 0 1.4 6.8C1 8.5 1 12 1 12s0 3.5.4 5.2a3 3 0 0 0 2.1 2.1c1.8.4 8.5.4 8.5.4s6.7 0 8.5-.4a3 3 0 0 0 2.1-2.1C23 15.5 23 12 23 12zM9.7 15.3V8.7l5.7 3.3-5.7 3.3z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/dynasty.rap/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://discord.gg/ZSTeyqvEDM" target="_blank" rel="noopener" aria-label="Discord">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20.32 4.37A19.8 19.8 0 0 0 15.45 2.86a.07.07 0 0 0-.08.04c-.21.37-.44.86-.6 1.24a18.27 18.27 0 0 0-5.49 0c-.16-.39-.4-.87-.61-1.24a.08.08 0 0 0-.08-.04A19.74 19.74 0 0 0 3.7 4.37a.07.07 0 0 0-.03.03C.53 9.09-.32 13.68.1 18.21a.08.08 0 0 0 .03.06 19.93 19.93 0 0 0 5.99 3.03.08.08 0 0 0 .09-.03c.46-.63.87-1.29 1.23-1.99a.08.08 0 0 0-.04-.11 13.1 13.1 0 0 1-1.87-.89.08.08 0 0 1-.01-.13c.13-.09.25-.19.37-.29a.07.07 0 0 1 .08-.01c3.93 1.79 8.18 1.79 12.06 0a.07.07 0 0 1 .08.01c.12.1.24.2.37.29a.08.08 0 0 1-.01.13c-.6.35-1.22.65-1.87.89a.08.08 0 0 0-.04.11c.36.7.78 1.36 1.23 1.99a.08.08 0 0 0 .09.03 19.87 19.87 0 0 0 6-3.03.08.08 0 0 0 .03-.06c.5-5.25-.84-9.8-3.55-13.81a.06.06 0 0 0-.03-.03zM8.02 15.45c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.34-.96 2.42-2.16 2.42zm7.97 0c-1.18 0-2.16-1.08-2.16-2.42s.96-2.42 2.16-2.42c1.21 0 2.18 1.1 2.16 2.42 0 1.34-.95 2.42-2.16 2.42z"/></svg>
+      </a>
+    </div>
+    <p class="fcopy">© 2026 Star Content - Tous droits réservés.</p>
+  </div>
+</footer>
+
+<!-- ============================================================= -->
+<!-- SCRIPTS                                                       -->
+<!-- ============================================================= -->
+<script>
+/* ---------------------------------------------------------------
+   1) NAVBAR : ombre au scroll + menu burger (scroll vers contact)
+   --------------------------------------------------------------- */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 30);
+});
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+});
+
+/* ---------------------------------------------------------------
+   2) RÉVÉLATION AU SCROLL (IntersectionObserver)
+   --------------------------------------------------------------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      // léger décalage en cascade pour les éléments d'un même groupe
+      setTimeout(() => e.target.classList.add('in'), (i % 6) * 70);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------------------------------------------------------------
+   3) CARROUSEL TÉMOIGNAGES : flèches + scroll d'une carte
+   --------------------------------------------------------------- */
+const track = document.getElementById('track');
+const scrollAmount = () => {
+  const card = track.querySelector('.tcard');
+  return card ? card.getBoundingClientRect().width + 22 : 380; // 22 = gap
+};
+document.getElementById('nextBtn').addEventListener('click', () => track.scrollBy({left: scrollAmount(), behavior:'smooth'}));
+document.getElementById('prevBtn').addEventListener('click', () => track.scrollBy({left: -scrollAmount(), behavior:'smooth'}));
+
+/* ---------------------------------------------------------------
+   4) DÉVERROUILLAGE AUDIO
+   Les navigateurs bloquent le son tant qu'il n'y a pas eu
+   d'interaction. On débloque dès le 1er clic / tap sur la page.
+   --------------------------------------------------------------- */
+let audioUnlocked = false;
+function unlockAudio(){
+  if (audioUnlocked) return;
+  audioUnlocked = true;
+  // Si une vidéo est en cours de lecture muette au moment du déblocage, on remet le son
+  document.querySelectorAll('.js-video.playing video').forEach(v => { v.muted = false; });
+}
+['pointerdown','touchstart','keydown'].forEach(evt =>
+  window.addEventListener(evt, unlockAudio, {once:false, passive:true})
+);
+
+/* ---------------------------------------------------------------
+   5) CARTES VIDÉO
+   - source chargée à la demande (data-src)
+   - PAS de contrôles (clic droit / téléchargement désactivés)
+   - hover (desktop) : play + son si débloqué / mouseout : pause
+   - tap (mobile / tactile) : bascule play / pause
+   --------------------------------------------------------------- */
+function loadVideoSource(box){
+  const video = box.querySelector('video');
+  if (video.dataset.loaded) return video;
+  const src = box.getAttribute('data-src');
+  if (src){
+    const s = document.createElement('source');
+    s.src = src; s.type = 'video/mp4';
+    video.appendChild(s);
+    video.load();
+  }
+  video.dataset.loaded = '1';
+  return video;
+}
+
+function playVideo(box){
+  const video = loadVideoSource(box);
+  video.muted = !audioUnlocked;          // son uniquement si déjà débloqué
+  box.classList.add('playing');
+  // on met en pause les autres vidéos / audios
+  document.querySelectorAll('.js-video.playing').forEach(o => { if(o!==box) pauseVideo(o); });
+  stopAllAudio();
+  video.play().catch(()=>{ video.muted = true; video.play().catch(()=>{}); });
+}
+function pauseVideo(box){
+  const video = box.querySelector('video');
+  video.pause();
+  box.classList.remove('playing');
+}
+
+document.querySelectorAll('.js-video').forEach(box => {
+  const video = box.querySelector('video');
+  // Empêcher menu contextuel (téléchargement) + pas de contrôles
+  video.controls = false;
+  video.setAttribute('controlslist','nodownload noplaybackrate noremoteplayback');
+  video.setAttribute('disablepictureinpicture','');
+  video.addEventListener('contextmenu', e => e.preventDefault());
+
+  // Détection tactile vs souris
+  const isTouch = window.matchMedia('(hover: none)').matches;
+
+  if (!isTouch){
+    // DESKTOP : survol
+    box.addEventListener('mouseenter', () => playVideo(box));
+    box.addEventListener('mouseleave', () => pauseVideo(box));
+  }
+  // TAP (mobile) ou clic : bascule play/pause
+  box.addEventListener('click', () => {
+    if (box.classList.contains('playing')) pauseVideo(box);
+    else playVideo(box);
+  });
+});
+
+/* ---------------------------------------------------------------
+   6) CARTES AUDIO (vocal)
+   - source chargée à la demande
+   - tap / clic : play-pause
+   - son débloqué via l'interaction (le clic compte déjà comme tel)
+   --------------------------------------------------------------- */
+const audioEls = []; // garde une réf pour tout stopper
+
+function stopAllAudio(){
+  audioEls.forEach(({audio, card}) => { audio.pause(); card.classList.remove('playing'); setPlayIcon(card,false); });
+}
+function setPlayIcon(card, playing){
+  const ic = card.querySelector('.ic-play');
+  if (!ic) return;
+  ic.innerHTML = playing
+    ? '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'   // pause
+    : '<path d="M8 5v14l11-7z"/>';               // play
+}
+
+document.querySelectorAll('.js-audio').forEach(card => {
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  audio.src = card.getAttribute('data-src');
+  audioEls.push({audio, card});
+
+  audio.addEventListener('ended', () => { card.classList.remove('playing'); setPlayIcon(card,false); });
+
+  card.addEventListener('click', () => {
+    unlockAudio(); // le clic débloque l'audio de la page (vidéos comprises)
+    const isPlaying = !audio.paused && !audio.ended;
+    if (isPlaying){
+      audio.pause(); card.classList.remove('playing'); setPlayIcon(card,false);
+    } else {
+      // on coupe le reste
+      stopAllAudio();
+      document.querySelectorAll('.js-video.playing').forEach(pauseVideo);
+      audio.volume = 1;
+      audio.muted = false;
+      audio.play().then(() => { card.classList.add('playing'); setPlayIcon(card,true); }).catch(()=>{});
+    }
+  });
+});
+
+/* ---------------------------------------------------------------
+   7) FORMULAIRE : validation simple + message de succès
+   (Branche l'envoi réel vers ton outil dans le bloc indiqué)
+   --------------------------------------------------------------- */
+const form = document.getElementById('bookForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!form.checkValidity()){ form.reportValidity(); return; }
+
+  // >>> ENVOI RÉEL : décommente et adapte selon ton outil <<<
+  // const data = Object.fromEntries(new FormData(form));
+  // fetch('https://formspree.io/f/TON_ID', {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+
+  form.style.display = 'none';
+  document.getElementById('formSuccess').classList.add('show');
+});
+</script>
+</body>
+</html>
